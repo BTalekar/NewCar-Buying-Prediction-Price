@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car prediction</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="container-wrapper">
+            <form action="{{ url_for('predict')}}" method="post">
+                <h2 class="text_center">CAR PRICE PREDICTION</h2>
+
+                <h3>Manufacturer</h3><select name="Manufacturer" id="Manufacturer" required="required">
+                    <option value="Audi">Audi</option>
+                    <option value="Bajaj">Bajaj</option>
+                    <option value="Bentley">Bentley</option>
+                    <option value="Bmw">BMW</option>
+                    <option value="Datsun">Datsun</option>
+                    <option value="Ferrari">Ferrari</option>
+                    <option value="Fiat">Fiat</option>
+                    <option value="Force">Force</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Hyundai">Hyundai</option>
+                    <option value="Icml">Icml</option>
+                    <option value="Jaguar">Jaguar</option>
+                    <option value="Jeep">Jeep</option>
+                    <option value="Kia">Kia</option>
+                    <option value="Lamborghini">Lamborghini</option>
+                    <option value="Land Rover">Land Rover</option>
+                    <option value="Lexus">Lexus</option>
+                    <option value="MercedesBenz">Mercedes-Benz</option>
+                    <option value="Mahindra">Mahindra</option>
+                    <option value="Maruti Suzuki">Maruti Suzuki</option>
+                    <option value="Mitsubishi">Mitsubishi</option>
+                    <option value="Mg">Mg</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Porsche">Porsche</option>
+                    <option value="Renault">Renault</option>
+                    <option value="Rolls-Royce">Rolls-Royce</option>
+                    <option value="Skoda">Skoda</option>
+                    <option value="Tata">Tata</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Volkswagen">Volkswagen</option>
+                    <option value="Volvo">Volvo</option>
+                </select>
+
+                <h3>Fuel Type</h3><select name="Fuel_Type" id="fuel" required="required">
+                    <option value="Petrol">Petrol</option>
+                    <option value="Diesel">Diesel</option>
+                    <option value="CNG+Petrol">CNG + Petrol</option>
+                    <option value="CNG">CNG</option>
+                    <option value="Electric">Electric</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+                <h3>Seating Capacity</h3><input id="seating capacity" name="seating_capacity" required="required">
+
+                <h3>Body Type</h3><select name="Body_Type" id="body type" required="required">
+                    <option value="Hatchback">Hatchback</option>
+                    <option value="Sedan">Sedan</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Convertible">Convertible</option>
+                    <option value="Coupe">Coupe</option>
+                    <option value="Crossover">Crossover</option>
+                    <option value="MPV">MPV</option>
+                    <option value="MUV">MUV</option>
+                    <option value="Sports">Sports</option>
+                </select>
+
+                <h3>Drive Train</h3><select name="Drive_Train" id="drive train" required="required">
+                    <option value="RWD">RWD</option>
+                    <option value="FWD ">FWD </option>
+                    <option value="AWD">AWD </option>
+                    <option value="4WD">4WD</option>
+                </select>
+
+                <h3>Transmission type</h3><select name="Transmission_Type" id="research" required="required">
+                    <option value="Manual">Manual</option>
+                    <option value="Automatic">Automatic</option>
+                    <option value="CVT">CVT</option>
+                    <option value="DCT">DCT</option>
+                    <option value="AMT">AMT</option>
+                </select>
+                <div class="submit-button">
+                    <button id="sub" type="submit ">Calculate the Price</button>
+                </div>
+
+            </form>
+
+        </div>
+        <h3 class="text_center">{{ prediction_text }}</h3>
+    </div>
+
+</body>
+<style>
+    body {
+        padding: 0px;
+        font-family: Poppins;
+        background-color: #DAE5D0;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        color: rgb(13, 12, 12) !important;
+
+    }
+
+
+    #box {
+        border-radius: 60px;
+        border-color: 45px;
+        border-style: solid;
+        font-family: cursive;
+        text-align: center;
+        background-color: rgb(168, 131, 61);
+        font-size: medium;
+        position: absolute;
+        width: 700px;
+        bottom: 9%;
+        height: 850px;
+        right: 30%;
+        padding: 0px;
+        margin: 0px;
+        font-size: 14px;
+    }
+
+    input {
+        height: 30px;
+        font-size: 20px;
+        outline: none;
+        border-radius: 5px;
+        font-family: "Poppins";
+    }
+
+    input:focus {
+        outline: none;
+    }
+
+    h3 {
+        text-align: left;
+    }
+
+    form {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    select {
+        height: 40px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-family: "Poppins";
+    }
+
+    button {
+        height: 40px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        background: #798777;
+        color: white;
+        padding: 10px 20px;
+        font-weight: 400;
+        font-family: "Poppins";
+        height: auto;
+    }
+
+    .submit-button {
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .text_center {
+        text-align: center;
+    }
+
+    .container {
+        padding: 0 80px;
+    }
+
+    @media screen and (max-width: 600px) {
+        form {
+            width: 100%;
+        }
+
+        .container {
+            padding: 0 40px;
+        }
+    }
+</style>
+
+</html>
